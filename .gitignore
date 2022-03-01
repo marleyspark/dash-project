@@ -1,2 +1,6 @@
 env/
-data/
+datanottoupload/
+questions.txt
+README.md
+testing.ipynb
+branch_expenses.xlsx
