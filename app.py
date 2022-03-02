@@ -107,7 +107,8 @@ app.layout = html.Div([
             }),
     html.Button('Top 10', id='top10-btn'),
     html.Button('Bottom 10', id='bottom10-btn'),
-    dcc.Graph(figure={}, id='top-bottom-brances-graph')
+    dcc.Graph(figure={}, id='top-brances-graph'),
+    dcc.Graph(figure={}, id='bottom-brances-graph')
 ])
 
 
@@ -260,9 +261,9 @@ def update_option(hour):
     return []
 
 
-#topandbottombranches
+#top branches
 @app.callback(
-    Output(component_id='top-bottom-brances-graph',
+    Output(component_id='top-brances-graph',
            component_property='figure'),
     Input(component_id='top10-btn', component_property='n_clicks')
     #Input(component_id='bottom10-btn',component_property='n_clicks')
@@ -270,18 +271,38 @@ def update_option(hour):
 def show_viz(buttonPress):
     if buttonPress is not None:
         my_df = pd.read_csv("data/newdata.csv")
-        branchdata = pd.read_excel('data/branch_expenses.xlsx')
-        grouped_branch = branchdata['(operational_cost + staff_bonuses + misc_expenses + waste_cost)'] = branchdata.sum(axis=1)
-        grouped_branch = branchdata.groupby(['branch_name'],as_index=False).sum().sort_values(by='branch_name',ascending=True).head(10)
-        grouped_total = my_df['amount_in_gbp'] = my_df.sum(axis=1)
-        grouped_total = my_df.groupby(['branch_name'],as_index=False).sum().sort_values(by='branch_name',ascending=True).head(10)
-        table_join = pd.merge(grouped_branch,grouped_total,how='left',on=['branch_name'])
-        table_join = table_join['final_total'] = table_join['(operational_cost + staff_bonuses + misc_expenses + waste_cost)'] - table_join['amount_in_gbp']
-        #my_df = pd.DataFrame(data=grades)
-        figure = px.bar(table_join, x='branch_name', y=['final_total']).head(10)
+        table_join = pd.read_csv('data/table_join.csv')
+        top = table_join.head(10)
+        figure = px.bar(
+            top,
+            x='branch_name',
+            y=[
+                '(operational_cost + staff_bonuses + misc_expenses + waste_cost)'
+            ])
         return figure
     return {}
 
+
+#bottom branches
+@app.callback(
+    Output(component_id='bottom-brances-graph',
+           component_property='figure'),
+    Input(component_id='bottom10-btn', component_property='n_clicks')
+    #Input(component_id='bottom10-btn',component_property='n_clicks')
+)
+def show_viz(buttonPress):
+    if buttonPress is not None:
+        my_df = pd.read_csv("data/newdata.csv")
+        table_join = pd.read_csv('data/table_join.csv')
+        top = table_join.tail(10)
+        figure = px.bar(
+            top,
+            x='branch_name',
+            y=[
+                '(operational_cost + staff_bonuses + misc_expenses + waste_cost)'
+            ])
+        return figure
+    return {}
 
 # run
 if __name__ == '__main__':
