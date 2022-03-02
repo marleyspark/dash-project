@@ -15,22 +15,26 @@ server = app.server
 
 # Layout
 app.layout = html.Div([
-    html.H1('Welcome to the Dashboard!!!',
+    html.H1('Welcome to the Dashboard',
             style={
                 'color': 'black',
                 'padding-top': '50px',
-                'text-align': 'center'
+                'text-align': 'center',
+                'border': '1px blue dashed',
+                'padding': '50px',
+                'font-family': 'Lucida Console'
             }),
-    html.P('Use the dropdowns to see the visulisations',
+    html.P('Use the dropdowns to see the visualisations',
            style={
-               'color': 'black',
+               'color': 'red',
                'text-align': 'center',
-               'padding-top': '50px'
+               'font-weight': 'bold'
            }),
     html.H2('Products Purchased by City by Region',
             style={
                 'color': 'black',
                 'padding-top': '50px',
+                'font-family': 'Lucida Console'
             }),
     html.H3('Top 5'),
     html.P('Select Region'),
@@ -58,6 +62,7 @@ app.layout = html.Div([
             style={
                 'color': 'black',
                 'padding-top': '50px',
+                'font-family': 'Lucida Console'
             }),
     html.H3('Top 10'),
     html.P('Select Region'),
@@ -89,6 +94,7 @@ app.layout = html.Div([
             style={
                 'color': 'black',
                 'padding-top': '50px',
+                'font-family': 'Lucida Console'
             }),
     html.P('Select Branch'),
     dcc.Dropdown(mainData.branch_name.unique(),
@@ -104,9 +110,38 @@ app.layout = html.Div([
             style={
                 'color': 'black',
                 'padding-top': '50px',
+                'font-family': 'Lucida Console'
             }),
-    html.Button('Top 10', id='top10-btn'),
-    html.Button('Bottom 10', id='bottom10-btn'),
+    html.Button('Top 10',
+                id='top10-btn',
+                style={
+                    'background-color': 'green',
+                    'border': 'none',
+                    'color': 'white',
+                    'padding': '16px 32px',
+                    'text-align': 'center',
+                    'text-decoration': 'none',
+                    'display': 'inline-block',
+                    'font-size': '16px',
+                    'margin': '4px 2px',
+                    'transition-duration': '0.4s',
+                    'cursor': 'pointer'
+                }),
+    html.Button('Bottom 10',
+                id='bottom10-btn',
+                style={
+                    'background-color': 'blue',
+                    'border': 'none',
+                    'color': 'white',
+                    'padding': '16px 32px',
+                    'text-align': 'center',
+                    'text-decoration': 'none',
+                    'display': 'inline-block',
+                    'font-size': '16px',
+                    'margin': '4px 2px',
+                    'transition-duration': '0.4s',
+                    'cursor': 'pointer'
+                }),
     dcc.Graph(figure={}, id='top-brances-graph'),
     dcc.Graph(figure={}, id='bottom-brances-graph')
 ])
