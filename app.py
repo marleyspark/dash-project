@@ -1,5 +1,4 @@
 # imports
-# dash
 import dash
 
 from dash import dcc, html
@@ -7,6 +6,7 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
 
+#this is main data import for dropdowns
 mainData = pd.read_csv("data/newdata.csv")
 
 # setup
@@ -151,7 +151,6 @@ app.layout = html.Div([
 @app.callback(
     Output(component_id='top-5-graph', component_property='figure'),
     Input(component_id='region-dropdown-Top-5', component_property='value')
-    #Input(component_id='city-dropdown-Top-10',component_property='value')
 )
 def show_viz(dropdown):
     if dropdown is not None:
@@ -178,7 +177,6 @@ def update_option(region):
 @app.callback(
     Output(component_id='bottom-5-graph', component_property='figure'),
     Input(component_id='region-dropdown-bottom-5', component_property='value')
-    #Input(component_id='city-dropdown-Top-10',component_property='value')
 )
 def show_viz(dropdown):
     if dropdown is not None:
@@ -207,7 +205,7 @@ def update_option(region):
     Output(component_id='branches-best-graph', component_property='figure'),
     Input(component_id='best-performing-banches-dropdown-branch',
           component_property='value')
-    #Input(component_id='best-performing-banches-dropdown-city', component_property='value')
+    
 )
 def show_viz(dropdown):
     if dropdown is not None:
@@ -239,7 +237,7 @@ def update_option(branch_name):
     Output(component_id='branches-worst-graph', component_property='figure'),
     Input(component_id='worst-performing-banches-dropdown-branch',
           component_property='value')
-    #Input(component_id='best-performing-banches-dropdown-city', component_property='value')
+    
 )
 def show_viz(dropdown):
     if dropdown is not None:
@@ -271,7 +269,7 @@ def update_option(branch_name):
     Output(component_id='sales-per-hour-graph', component_property='figure'),
     Input(component_id='sales-per-hour--time-dropdown',
           component_property='value')
-    #Input(component_id='sales-per-hour--time-dropdown', component_property='value')
+    
 )
 def show_viz(dropdown):
     if dropdown is not None:
@@ -301,7 +299,7 @@ def update_option(hour):
     Output(component_id='top-brances-graph',
            component_property='figure'),
     Input(component_id='top10-btn', component_property='n_clicks')
-    #Input(component_id='bottom10-btn',component_property='n_clicks')
+    
 )
 def show_viz(buttonPress):
     if buttonPress is not None:
@@ -323,7 +321,7 @@ def show_viz(buttonPress):
     Output(component_id='bottom-brances-graph',
            component_property='figure'),
     Input(component_id='bottom10-btn', component_property='n_clicks')
-    #Input(component_id='bottom10-btn',component_property='n_clicks')
+    
 )
 def show_viz(buttonPress):
     if buttonPress is not None:

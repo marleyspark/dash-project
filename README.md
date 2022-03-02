@@ -6,7 +6,7 @@
 ## Table of Contents
 
 - [General Info](#general-information)
-- [Wireframes & User Stories](#wireframe&user-stories)
+- [Wireframes & User Stories](#wireframe-&-user-stories)
 - [Planning](#planning)
 - [Lessons](#lessons)
 - [Technologies Used](#technologies-used)
@@ -32,7 +32,7 @@ measured in both item quantity sold and monetary value of sales made, limit to b
 - Identify the top 10 and bottom 10 profitable branches and indicate how profitable they
 are. (Calculate profitability by subtracting expense from total sales)
 
-## Wireframes & User Stories
+## Wireframes & User-Stories
 
 link to [Wireframes and user stories](https://miro.com/app/board/uXjVOJDvhVE=/?invite_link_id=989677105909)
 
